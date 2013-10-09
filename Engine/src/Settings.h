@@ -1,0 +1,1 @@
+#define COMPONENTS_MAX_NUMBER (1000)
