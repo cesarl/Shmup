@@ -68,6 +68,7 @@
     <ClCompile Include="src\Barcode.cpp" />
     <ClCompile Include="src\EmptySystem.cpp" />
     <ClCompile Include="src\Entity.cpp" />
+    <ClCompile Include="src\EntityManager.cpp" />
     <ClCompile Include="src\System.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -77,8 +78,9 @@
     <ClInclude Include="src\EmptySystem.h" />
     <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\Assert.h" />
+    <ClInclude Include="src\EntityManager.h" />
     <ClInclude Include="src\Settings.h" />
-    <ClInclude Include="src\Singleton.hpp" />
+    <ClInclude Include="src\Singleton.h" />
     <ClInclude Include="src\System.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />

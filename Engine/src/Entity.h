@@ -12,9 +12,13 @@ namespace	Component
 
 namespace	Game
 {
+	class EntityManager;
+
 	class Entity
-	{
+	{		
 	public:
+		typedef Game::EntityManager Manager;
+
 		Entity(unsigned int id = 0);
 		~Entity();
 		Entity(const Entity &other);

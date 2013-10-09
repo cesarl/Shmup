@@ -1,7 +1,12 @@
 #include <allegro5/allegro.h>
+#include "src/Entity.h"
+#include "src/EntityManager.h"
 
 int main(void)
 {
+	Game::Entity::Manager::getInstance();
+
+
 	ALLEGRO_DISPLAY *dis = NULL;
 
 	if (!al_init())
