@@ -1,21 +1,44 @@
 #include <allegro5/allegro.h>
 #include "src/Entity.h"
 #include "src/EntityManager.h"
+#include "src/EmptySystem.h"
+#include "src/EmptyComponent.h"
 
 int main(void)
 {
-	Game::Entity::Manager::getInstance();
 
+	//
+	// Tests
+	//
 
-	ALLEGRO_DISPLAY *dis = NULL;
+	Game::Entity::Manager &entityManager = Game::Entity::Manager::getInstance();
+	System::Manager &systemManager = System::Manager::getInstance();
 
-	if (!al_init())
-		return EXIT_FAILURE;		
-	dis = al_create_display(300, 300);
-	if (!dis)
-		return EXIT_FAILURE;
-	al_rest(1);
-	al_destroy_display(dis);
-	al_uninstall_system();
+	systemManager.addSystem<System::sEmpty>(1);
+	systemManager.init();
+
+	Game::Entity &e1 = entityManager.newEntity();
+
+	e1.addComponent<Component::cEmpty>();
+
+	systemManager.update();
+
+	e1.removeComponent<Component::cEmpty>();
+
+	systemManager.update();
+
+	//
+	// Allegro Test
+	//
+
+	//ALLEGRO_DISPLAY *dis = NULL;
+	//if (!al_init())
+	//	return EXIT_FAILURE;		
+	//dis = al_create_display(300, 300);
+	//if (!dis)
+	//	return EXIT_FAILURE;
+	//al_rest(1);
+	//al_destroy_display(dis);
+	//al_uninstall_system();
 	return EXIT_SUCCESS;
 }

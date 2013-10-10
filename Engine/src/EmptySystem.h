@@ -5,11 +5,11 @@
 
 namespace System
 {
-	class EmptySystem : public System::Base
+	class sEmpty : public System::Base
 	{
 	public:
-		EmptySystem();
-		~EmptySystem();
+		sEmpty(){};
+		virtual ~sEmpty(){};
 		virtual void updateBegin(const ALLEGRO_EVENT & ev, double time) override;
 		virtual void updateEnd(const ALLEGRO_EVENT & ev, double time) override;
 		virtual void mainUpdate(const ALLEGRO_EVENT & ev, double time) override;
