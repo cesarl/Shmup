@@ -34,3 +34,50 @@ unsigned int Entity::getId() const
 {
 	return id_;
 }
+
+bool Entity::hasComponent(unsigned int componentId) const
+{
+return code_.isSet(componentId);	
+}
+
+template <typename T>
+bool Entity::hasComponent()
+{
+	return code_.isSet<T>();
+}
+
+template <typename T>
+Component::Base *Entity::addComponent()
+{
+	unsigned int id = T::getTypeId();
+	if (hasComponent(id))
+	{
+		return static_cast<T*>(components_[id]);
+	}
+	T *tmp = new T;
+	// todo assert if new T fail
+	code_.add(id);
+	components_[id] = tmp;
+	return tmp;
+}
+
+template <typename T>
+Component::Base *Entity::getComponent()
+{
+	unsigned int id = T::getTypeId();
+	if (!hasComponent(id))
+		return std::nullptr;
+	return static_cast<T*>(components_[id]);
+}
+
+template <typename T>
+void removeComponent()
+{
+	unsigned int id = T::getTypeId();
+	if (!hasComponent(id))
+		return;
+	code_.remove(id);
+	delete components_[id];
+	components_[id]	= nullptr;
+delete 	
+}

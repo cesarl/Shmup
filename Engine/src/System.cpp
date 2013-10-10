@@ -14,8 +14,7 @@ void Base::update(const ALLEGRO_EVENT & ev, double time)
 	updateBegin(ev, time);
 	mainUpdate(ev, time);
 	updateEnd(ev, time);
-	// todo
-	//System::Manager::updateSystemCollections();
+	System::Manager::updateSystemCollections();
 }
 
 void Base::entityUpdated(const Game::Entity &entity)

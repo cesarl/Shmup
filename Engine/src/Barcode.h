@@ -29,6 +29,7 @@ namespace	Game
 		void add(unsigned int componentId);
 		void remove(unsigned int componentId);
 		bool isEmpty();
+		bool isSet(unsigned int componentId);
 
 		template <class T>
 		void add()
@@ -40,6 +41,12 @@ namespace	Game
 		void remove()
 		{
 			applyChange(T::getTypeId(), false);
+		}
+
+		template <class T>
+		bool isSet()
+		{
+			return code_.test(T::getTypeId());
 		}
 
 	private:

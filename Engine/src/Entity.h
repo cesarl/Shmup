@@ -25,6 +25,20 @@ namespace	Game
 		Entity &operator=(const Entity &other);
 		const Game::Barcode &getCode() const;
 		unsigned int getId() const;
+		bool hasComponent(unsigned int id);
+
+		template <typename T>
+		bool hasComponent();
+
+		template <typename T>
+		Component::Base *addComponent();
+
+		template <typename T>
+		Component::Base *getComponent();
+
+		template <typename T>
+		void removeComponent();
+
 	private:
 		unsigned int id_;
 		Barcode code_;

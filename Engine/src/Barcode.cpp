@@ -60,3 +60,8 @@ bool Barcode::isEmpty()
 {
 	return (code_.none());
 }
+
+bool Barcode::isSet(unsigned int componentId)
+{
+	return code_.test(componentId);
+}
