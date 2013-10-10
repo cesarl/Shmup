@@ -3,33 +3,81 @@
 
 #include <map>
 #include <string>
-#include "Singleton.h"
 
 namespace Utils
 {
-	class StringId : public Singleton<StringId>
+	class Tag
 	{
-	public:
-		unsigned int getId(const std::string &tag)
+	private:
+		class StringId
 		{
-			auto it = list_.find(tag);
-			if (it != std::end(list_))
-				return it.second;
-			list_.insert(std::pair<std::string, unsigned int>(tag, id_));
-			return id_++;
+		public:
+			unsigned int getId(const std::string &tag)
+			{
+				auto it = list_.find(tag);
+				if (it != std::end(list_))
+					return it.second;
+				list_.insert(std::pair<std::string, unsigned int>(tag, id_));
+				return id_++;
+			}
+		private:
+			StringId()
+				: id_(0)
+			{}
 
+			virtual ~StringId()
+			{}
+		private:
+			unsigned int id_;
+			std::map<std::string, unsigned int> list_;
+		};
+	public:
+		Tag(const std::string &tag)
+			: str_(tag),
+			id_(0)
+		{
+			id_ = manager_.getId(tag);
+		}
+
+		Tag(const Tag &other)
+		{
+			str_ = other.str_;
+			id_ = other.id_;
+		}
+
+		Tag &operator=(const Tag &other)
+		{
+			str_ = other.str_;
+			id_ = other.id_;
+			return *this;
+		}
+
+		~Tag()
+		{}
+
+		const std::string &getString() const
+		{
+			return str_;
+		}
+
+		const unsigned int getId() const
+		{
+			return id_;
+		}
+
+		bool operator==(const Tag &other)
+		{
+			return (id_ == other.id_);
+		}
+
+		bool operator!=(const Tag &other)
+		{
+			return (id_ != other.id_);
 		}
 	private:
-		StringId()
-			: id_(0)
-		{}
-
-		virtual ~StringId()
-		{}
-	private:
+		std::string str_;
 		unsigned int id_;
-		std::map<std::string, unsigned int> list_;
-		friend class Singleton<StringId>;
+		static StringId manager_;
 	};
 };
 

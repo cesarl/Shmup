@@ -1,14 +1,20 @@
 #include "Entity.h"
 #include "Barcode.h"
 #include "SystemManager.h"
+#include "StringId.hpp"
 
 using namespace Game;
 
 // TODO RESET() !
 
-Entity::Entity(unsigned int id)
-	: id_(id)	
-{}
+Entity::Entity(unsigned int id, const std::string &tag, const std::string &layer)
+	: id_(id),	
+{
+// todo abort if (tag.size() > TAG_LENGTH)
+// todo abort if (layer.size() > TAG_LENGTH)
+	tag_ = Utils::StringId::getInstance().getId(tag);
+	layer_ = Utils::StringId::getInstance().getId(layer);
+}
 
 Entity::~Entity()
 {
@@ -21,6 +27,8 @@ Entity::Entity(const Entity &other)
 	code_ = other.code_;
 	// todo delete components
 	components_ = other.components_;
+	tag_ = o.tag_;
+	layer_ = o.layer_;
 }
 
 Entity &Entity::operator=(const Entity &other)
@@ -29,6 +37,8 @@ Entity &Entity::operator=(const Entity &other)
 	code_ = other.code_;
 	// todo delete components
 	components_ = other.components_;
+	tag_ = o.tag_;
+	layer_ = o.layer_;
 	return *this;
 }
 
@@ -47,8 +57,22 @@ bool Entity::hasComponent(unsigned int componentId) const
 return code_.isSet(componentId);	
 }
 
+//const unsigned int Entity::getTagId() const
+//{
+//	return tag_;
+//}
+//
+//const unsigned int getLayerId() const
+//{
+//	return id_;
+//}
+
+//const std::string &getTagString() const;
+//const std::string &getLayerString() const;
+
+
 template <typename T>
-bool Entity::hasComponent()
+bool Entity::hasComponent() const
 {
 	return code_.isSet<T>();
 }
@@ -70,7 +94,7 @@ Component::Base *Entity::addComponent()
 }
 
 template <typename T>
-Component::Base *Entity::getComponent()
+Component::Base *Entity::getComponent() const
 {
 	unsigned int id = T::getTypeId();
 	if (!hasComponent(id))

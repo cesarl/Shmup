@@ -18,16 +18,20 @@ namespace	Game
 	public:
 		typedef Game::EntityManager Manager;
 
-		Entity(unsigned int id = 0);
+		Entity(unsigned int id = 0, const std::string &tag = DEFAULT_TAG, const std::string &layer = DEFAULT_LAYER);
 		~Entity();
 		Entity(const Entity &other);
 		Entity &operator=(const Entity &other);
 		const Game::Barcode &getCode() const;
 		unsigned int getId() const;
-		bool hasComponent(unsigned int id);
+		bool hasComponent(unsigned int id) const;
+		//const unsigned int getTagId() const;
+		//const unsigned int getLayerId() const;
+		//const std::string &getTagString() const;
+		//const std::string &getLayerString() const;
 
 		template <typename T>
-		bool hasComponent();
+		bool hasComponent() const;
 
 		template <typename T>
 		Component::Base *addComponent();
@@ -41,6 +45,8 @@ namespace	Game
 		static Game::EntityManager &Manager();
 	private:
 		unsigned int id_;
+		unsigned int tag_;
+		unsigned int layer_;
 		Barcode code_;
 		std::vector<Component::Base*> components_;
 	};
