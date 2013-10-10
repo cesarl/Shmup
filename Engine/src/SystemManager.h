@@ -2,6 +2,7 @@
 # define    __SYSTEM_MANAGER_H__
 
 #include    <multimap>
+#include    <set>
 #include    <allegro5/allegro.h>
 #include    "Singleton.h"
 
@@ -17,6 +18,7 @@ namespace System
 		void init();
 		void update(const ALLEGRO_EVENT &event, double time);
 		void draw(const ALLLEGRO_EVENT &event, double time);
+		void entityModified(unsigned int entityId);
 
 		template <class T>
 		T *addSystem(int priority, bool draw = false);
@@ -30,6 +32,7 @@ namespace System
 		std::multimap<int, Base*> updateList_;
 		std::multimap<int, Base*> drawList_;
 		std::map<const char *, Base*> list_;
+		std::unordered_set<unsingned int> entityModified_;
 	};
 };
 

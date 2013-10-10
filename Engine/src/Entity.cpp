@@ -1,19 +1,25 @@
 #include "Entity.h"
 #include "Barcode.h"
+#include "SystemManager.h"
 
 using namespace Game;
+
+// TODO RESET() !
 
 Entity::Entity(unsigned int id)
 	: id_(id)	
 {}
 
 Entity::~Entity()
-{}
+{
+// todo delete components	
+}
 
 Entity::Entity(const Entity &other)
 {
 	id_ = other.id_;
 	code_ = other.code_;
+	// todo delete components
 	components_ = other.components_;
 }
 
@@ -21,6 +27,7 @@ Entity &Entity::operator=(const Entity &other)
 {
 	id_ = other.id_;
 	code_ = other.code_;
+	// todo delete components
 	components_ = other.components_;
 	return *this;
 }
@@ -71,7 +78,7 @@ Component::Base *Entity::getComponent()
 }
 
 template <typename T>
-void removeComponent()
+void Entity::removeComponent()
 {
 	unsigned int id = T::getTypeId();
 	if (!hasComponent(id))
@@ -79,5 +86,6 @@ void removeComponent()
 	code_.remove(id);
 	delete components_[id];
 	components_[id]	= nullptr;
+	System::Manager::getInstance().entityModified(getId());
 delete 	
 }

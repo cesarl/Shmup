@@ -1,5 +1,7 @@
 #include "SystemManager.h"
 #include "System.h"
+#include "EntityManager.h"
+#include "Entity.h"
 
 using namespace System;
 
@@ -33,9 +35,26 @@ void SystemManager::init()
 
 void SystemManager::update(const ALLEGRO_EVENT &event, double time)
 {
-	for (auto &e : updateList_)
+	Game::Entity::Manager &entityManager = Game::Entity::Manager::getInstance();
+
+	// clear entity modfied list
+	entityModified_.clear();
+
+	for (std::map<int, Base*>::iterator it = std::begin(updateList_);
+		it != std::end(updateList_);
+		++it)
 	{
-		e.second->update(event, time);
+		// update system
+		it->second->update(event, time);
+
+		std::map<int, Base*>::iterator next = it;
+		if (++next == std::end(updateList_))
+			next = std::begin(updateList_);
+		for (auto &i : entityModified_)
+		{
+			Game::Entity &entity = entityManager.getEntity(i);
+			next->second->entityUpdated(entity);
+		}
 	}
 }
 
@@ -45,6 +64,10 @@ void SystemManager::draw(const ALLEGRO_EVENT &event, double time)
 	{
 		e.second->update(event, time);
 	}	
+}
+
+void SystemManager::entityModified(unsigned int entityId)
+{
 }
 
 template <class T>

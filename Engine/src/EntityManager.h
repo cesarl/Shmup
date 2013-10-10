@@ -13,11 +13,17 @@ namespace Game
 	{
 	public:
 		friend class Utils::Singleton<EntityManager>;
+		Entity &getEntity(unsigned int entityId);
+		Entity &newEntity();
+		Entity &deleteEntity(const Entity &entity);
+		Entity &deleteEntity(unsigned int entityId);
 	private:
 		EntityManager();
 		virtual ~EntityManager();
 	private:
+		unsigned int idCounter_;
 		std::vector<Game::Entity> collection_;
+		std::vector<unsigned int> freeIds_;
 	};
 };
 

@@ -42,3 +42,11 @@ const Game::Barcode &Base::getCode() const
 {
 	return code_;
 }
+
+void Base::entityUpdated(const Game::Entity &entity)
+{
+	if (code_.match(entity.getCode()))
+		collection_.insert(entity.getId());
+	else
+		collection_.remove(entity.getId());
+}
