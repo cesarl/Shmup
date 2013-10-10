@@ -9,7 +9,6 @@ namespace	Component
 	struct	Base;
 };
 
-
 namespace	Game
 {
 	class EntityManager;
@@ -39,6 +38,7 @@ namespace	Game
 		template <typename T>
 		void removeComponent();
 
+		static Game::EntityManager &Manager();
 	private:
 		unsigned int id_;
 		Barcode code_;

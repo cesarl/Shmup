@@ -11,8 +11,10 @@ int main(void)
 	// Tests
 	//
 
-	Game::Entity::Manager &entityManager = Game::Entity::Manager::getInstance();
-	System::Manager &systemManager = System::Manager::getInstance();
+	using namespace Game;
+
+	Entity::Manager &entityManager = Entity::Manager();
+	System::Manager &systemManager = System::Manager();
 
 	systemManager.addSystem<System::sEmpty>(1);
 	systemManager.init();
@@ -20,10 +22,18 @@ int main(void)
 	Game::Entity &e1 = entityManager.newEntity();
 
 	e1.addComponent<Component::cEmpty>();
+	e1.removeComponent<Component::cEmpty>();
+	e1.addComponent<Component::cEmpty>();
+	e1.addComponent<Component::cEmpty>();
 
 	systemManager.update();
 
 	e1.removeComponent<Component::cEmpty>();
+
+	systemManager.update();
+
+	e1.removeComponent<Component::cEmpty>();
+	e1.addComponent<Component::cEmpty>();
 
 	systemManager.update();
 

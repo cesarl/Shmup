@@ -1,5 +1,6 @@
 #include "System.h"
 #include "Entity.h"
+#include "SystemManager.h"
 
 using namespace System;
 
@@ -14,7 +15,6 @@ void Base::update(const ALLEGRO_EVENT & ev, double time)
 	updateBegin(ev, time);
 	mainUpdate(ev, time);
 	updateEnd(ev, time);
-	System::Manager::updateSystemCollections();
 }
 
 void Base::entityUpdated(const Game::Entity &entity)
@@ -23,6 +23,12 @@ void Base::entityUpdated(const Game::Entity &entity)
 		collection_.insert(entity.getId());
 	else
 		collection_.erase(entity.getId());
+}
+
+static SystemManager &Base::Manager()
+{
+	static SystemManager &manager = SystemManager::getInstance();
+	return manager;
 }
 
 void Base::init()

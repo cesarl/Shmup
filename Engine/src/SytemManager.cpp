@@ -20,11 +20,6 @@ SystemManager::~SystemManager()
 	list_.clear();
 }
 
-void SystemManager::updateSystemCollection()
-{
-// todo
-}
-
 void SystemManager::init()
 {
 	for (auto &e : list_)
@@ -37,23 +32,24 @@ void SystemManager::update(const ALLEGRO_EVENT &event, double time)
 {
 	Game::Entity::Manager &entityManager = Game::Entity::Manager::getInstance();
 
-	// clear entity modfied list
-	entityModified_.clear();
-
 	for (std::map<int, Base*>::iterator it = std::begin(updateList_);
 		it != std::end(updateList_);
 		++it)
 	{
+		// clear entity modfied list
+		entityModified_.clear();
+
 		// update system
 		it->second->update(event, time);
 
-		std::map<int, Base*>::iterator next = it;
-		if (++next == std::end(updateList_))
-			next = std::begin(updateList_);
+		// update system entities collection
 		for (auto &i : entityModified_)
 		{
 			Game::Entity &entity = entityManager.getEntity(i);
-			next->second->entityUpdated(entity);
+			for (auto &sys : list_)
+			{
+				sys.second->entityUpdated(entity);
+			}
 		}
 	}
 }
@@ -68,6 +64,7 @@ void SystemManager::draw(const ALLEGRO_EVENT &event, double time)
 
 void SystemManager::entityModified(unsigned int entityId)
 {
+	entityModified_.insert(entityId);
 }
 
 template <class T>
@@ -96,5 +93,3 @@ T *getSystem()
 		return static_cast<T*>(it.second);
 	return std::nullptr;
 }
-
-using namespace System;

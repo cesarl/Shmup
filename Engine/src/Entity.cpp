@@ -65,6 +65,7 @@ Component::Base *Entity::addComponent()
 	// todo assert if new T fail
 	code_.add(id);
 	components_[id] = tmp;
+	System::Manager().entityModified(getId());
 	return tmp;
 }
 
@@ -86,6 +87,11 @@ void Entity::removeComponent()
 	code_.remove(id);
 	delete components_[id];
 	components_[id]	= nullptr;
-	System::Manager::getInstance().entityModified(getId());
-delete 	
+	System::Manager().entityModified(getId());
+}
+
+static Game::EntityManager &Entity::Manager()
+{
+	static manager = Manager::getInstance();
+	return manager;
 }
