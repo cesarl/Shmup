@@ -10,6 +10,7 @@ namespace Component
 	class Manager : public Utils::Singleton<Manager>
 	{
 	public:
+		friend class Utils::Singleton<Manager>;
 	private:
 		Manager();
 		virtual ~Manager();

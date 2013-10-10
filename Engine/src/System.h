@@ -15,6 +15,8 @@ namespace	Game
 
 namespace	System
 {
+	class   SystemManager;
+	typedef SystemManager Manager;
 	class	Base
 	{
 	public:
