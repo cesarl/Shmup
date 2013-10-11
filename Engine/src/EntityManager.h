@@ -15,8 +15,8 @@ namespace Game
 		friend class Utils::Singleton<EntityManager>;
 		Entity &getEntity(unsigned int entityId);
 		Entity &newEntity();
-		Entity &deleteEntity(const Entity &entity);
-		Entity &deleteEntity(unsigned int entityId);
+		void deleteEntity(const Entity &entity);
+		void deleteEntity(unsigned int entityId);
 	private:
 		EntityManager();
 		virtual ~EntityManager();

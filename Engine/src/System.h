@@ -17,6 +17,7 @@ namespace	System
 {
 	class   SystemManager;
 	typedef SystemManager Manager;
+
 	class	Base
 	{
 	public:
@@ -26,8 +27,6 @@ namespace	System
 		void entityUpdated(const Game::Entity &entity);
 		void init();
 		const Game::Barcode &getCode() const;
-		void entityUpdated(const Game::Entity &entity);
-		static SystemManager &Manager();
 
 		template <typename T>
 		void require();

@@ -5,7 +5,7 @@
 
 namespace  Component
 {
-	struct cEmpty : public Base<cEmpty>
+	struct cEmpty : public ComponentBase<cEmpty>
 	{
 		cEmpty(){}
 		virtual ~cEmpty(){}

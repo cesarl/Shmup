@@ -14,9 +14,9 @@ namespace Utils
 		public:
 			unsigned int getId(const std::string &tag)
 			{
-				auto it = list_.find(tag);
+				std::map<std::string, unsigned int>::iterator it = list_.find(tag);
 				if (it != std::end(list_))
-					return it.second;
+					return it->second;
 				list_.insert(std::pair<std::string, unsigned int>(tag, id_));
 				return id_++;
 			}
@@ -32,7 +32,7 @@ namespace Utils
 			std::map<std::string, unsigned int> list_;
 		};
 	public:
-		Tag(const std::string &tag)
+		Tag(const std::string &tag = "")
 			: str_(tag),
 			id_(0)
 		{

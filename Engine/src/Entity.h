@@ -3,6 +3,7 @@
 
 #include <vector>
 #include "Barcode.h"
+#include "StringId.hpp"
 
 namespace	Component
 {
@@ -25,6 +26,7 @@ namespace	Game
 		const Game::Barcode &getCode() const;
 		unsigned int getId() const;
 		bool hasComponent(unsigned int id) const;
+		void reset();
 		//const unsigned int getTagId() const;
 		//const unsigned int getLayerId() const;
 		//const std::string &getTagString() const;
@@ -34,19 +36,19 @@ namespace	Game
 		bool hasComponent() const;
 
 		template <typename T>
-		Component::Base *addComponent();
+		T *addComponent();
 
 		template <typename T>
-		Component::Base *getComponent();
+		T *getComponent() const;
 
 		template <typename T>
 		void removeComponent();
 
-		static Game::EntityManager &Manager();
+		static Game::EntityManager &getManager();
 	private:
 		unsigned int id_;
-		unsigned int tag_;
-		unsigned int layer_;
+		Utils::Tag tag_;
+		Utils::Tag layer_;
 		Barcode code_;
 		std::vector<Component::Base*> components_;
 	};

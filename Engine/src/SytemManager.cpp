@@ -24,7 +24,7 @@ void SystemManager::init()
 {
 	for (auto &e : list_)
 	{
-		e.init();
+		e.second->init();
 	}
 }
 

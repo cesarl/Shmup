@@ -3,6 +3,8 @@
 #include "src/EntityManager.h"
 #include "src/EmptySystem.h"
 #include "src/EmptyComponent.h"
+#include "src/System.h"
+#include "src/SystemManager.h"
 
 int main(void)
 {
@@ -11,10 +13,8 @@ int main(void)
 	// Tests
 	//
 
-	using namespace Game;
-
-	Entity::Manager &entityManager = Entity::Manager();
-	System::Manager &systemManager = System::Manager();
+	Game::Entity::Manager &entityManager = Game::Entity::getManager();
+	System::Manager &systemManager = System::getManager();
 
 	systemManager.addSystem<System::sEmpty>(1);
 	systemManager.init();
@@ -26,16 +26,16 @@ int main(void)
 	e1.addComponent<Component::cEmpty>();
 	e1.addComponent<Component::cEmpty>();
 
-	systemManager.update();
+	systemManager.update(ALLEGRO_EVENT(), 1.0f);
 
 	e1.removeComponent<Component::cEmpty>();
 
-	systemManager.update();
+	systemManager.update(ALLEGRO_EVENT(), 2.0f);
 
 	e1.removeComponent<Component::cEmpty>();
 	e1.addComponent<Component::cEmpty>();
 
-	systemManager.update();
+	systemManager.update(ALLEGRO_EVENT(), 3.0f);
 
 	//
 	// Allegro Test

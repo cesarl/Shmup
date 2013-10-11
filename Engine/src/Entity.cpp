@@ -1,44 +1,45 @@
 #include "Entity.h"
 #include "Barcode.h"
 #include "SystemManager.h"
-#include "StringId.hpp"
+#include "EntityManager.h"
+#include "Component.h"
 
 using namespace Game;
 
 // TODO RESET() !
 
 Entity::Entity(unsigned int id, const std::string &tag, const std::string &layer)
-	: id_(id),	
+	: id_(id)
 {
 // todo abort if (tag.size() > TAG_LENGTH)
 // todo abort if (layer.size() > TAG_LENGTH)
-	tag_ = Utils::StringId::getInstance().getId(tag);
-	layer_ = Utils::StringId::getInstance().getId(layer);
+	tag_ = Utils::Tag(tag);
+	layer_ = Utils::Tag(layer);
 }
 
 Entity::~Entity()
 {
-// todo delete components	
+	reset();
 }
 
 Entity::Entity(const Entity &other)
 {
+	reset();
 	id_ = other.id_;
 	code_ = other.code_;
-	// todo delete components
 	components_ = other.components_;
-	tag_ = o.tag_;
-	layer_ = o.layer_;
+	tag_ = other.tag_;
+	layer_ = other.layer_;
 }
 
 Entity &Entity::operator=(const Entity &other)
 {
+	reset();
 	id_ = other.id_;
 	code_ = other.code_;
-	// todo delete components
 	components_ = other.components_;
-	tag_ = o.tag_;
-	layer_ = o.layer_;
+	tag_ = other.tag_;
+	layer_ = other.layer_;
 	return *this;
 }
 
@@ -54,7 +55,16 @@ unsigned int Entity::getId() const
 
 bool Entity::hasComponent(unsigned int componentId) const
 {
-return code_.isSet(componentId);	
+	return code_.isSet(componentId);
+}
+
+void Entity::reset()
+{
+	for (auto &e : components_)
+	{
+		delete e;
+	}
+	id_ = 0;
 }
 
 //const unsigned int Entity::getTagId() const
@@ -78,7 +88,7 @@ bool Entity::hasComponent() const
 }
 
 template <typename T>
-Component::Base *Entity::addComponent()
+T *Entity::addComponent()
 {
 	unsigned int id = T::getTypeId();
 	if (hasComponent(id))
@@ -94,7 +104,7 @@ Component::Base *Entity::addComponent()
 }
 
 template <typename T>
-Component::Base *Entity::getComponent() const
+T *Entity::getComponent() const
 {
 	unsigned int id = T::getTypeId();
 	if (!hasComponent(id))
@@ -114,8 +124,8 @@ void Entity::removeComponent()
 	System::Manager().entityModified(getId());
 }
 
-static Game::EntityManager &Entity::Manager()
+Game::EntityManager &Entity::getManager()
 {
-	static manager = Manager::getInstance();
+	static auto &manager = Entity::Manager::getInstance();
 	return manager;
 }

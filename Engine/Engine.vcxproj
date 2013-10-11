@@ -70,18 +70,22 @@
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\EntityManager.cpp" />
     <ClCompile Include="src\System.cpp" />
+    <ClCompile Include="src\SytemManager.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="src\Barcode.h" />
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\ComponentManager.h" />
+    <ClInclude Include="src\EmptyComponent.h" />
     <ClInclude Include="src\EmptySystem.h" />
     <ClInclude Include="src\Entity.h" />
     <ClInclude Include="src\Assert.h" />
     <ClInclude Include="src\EntityManager.h" />
     <ClInclude Include="src\Settings.h" />
     <ClInclude Include="src\Singleton.h" />
+    <ClInclude Include="src\StringId.hpp" />
     <ClInclude Include="src\System.h" />
+    <ClInclude Include="src\SystemManager.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

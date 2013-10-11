@@ -22,14 +22,14 @@ namespace	Game
 		Barcode(const Barcode &other);
 		Barcode &operator=(const Barcode &other);
 		~Barcode();
-		bool match(const std::bitset<COMPONENTS_MAX_NUMBER> &set);
-		bool match(const Entity &entity);
-		bool match(const Barcode &entity);
+		bool match(const std::bitset<COMPONENTS_MAX_NUMBER> &set) const;
+		bool match(const Entity &entity) const;
+		bool match(const Barcode &entity) const;
 		void reset();
 		void add(unsigned int componentId);
 		void remove(unsigned int componentId);
-		bool isEmpty();
-		bool isSet(unsigned int componentId);
+		bool isEmpty() const;
+		bool isSet(unsigned int componentId) const;
 
 		template <class T>
 		void add()
@@ -44,7 +44,7 @@ namespace	Game
 		}
 
 		template <class T>
-		bool isSet()
+		bool isSet() const
 		{
 			return code_.test(T::getTypeId());
 		}

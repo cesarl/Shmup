@@ -34,7 +34,7 @@ Entity &EntityManager::newEntity()
 	return res;
 }
 
-Entity &EntityManager::deleteEntity(const Entity &entity)
+void EntityManager::deleteEntity(const Entity &entity)
 {
 	unsigned int id = entity.getId();
 
@@ -42,8 +42,8 @@ Entity &EntityManager::deleteEntity(const Entity &entity)
 	freeIds_.push_back(id);
 }
 
-Entity &EntityManager::deleteEntity(unsigned int entityId)
+void EntityManager::deleteEntity(unsigned int entityId)
 {
 	collection_[entityId].reset();
-	freeIds_.push_back(id);
+	freeIds_.push_back(entityId);
 }

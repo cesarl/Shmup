@@ -11,11 +11,17 @@ namespace   Component
 
 	struct Base
 	{
-		Base();
-		virtual ~Base();
-		virtual Base &operator=(const Base &other);
+		Base(){}
+		virtual ~Base(){}
+		virtual Base &operator=(const Base &other)
+		{
+			return *this;
+		}
+	};
 
-		template <class T>
+	template <class T>
+	struct ComponentBase : public Base
+	{
 		static unsigned int getTypeId()
 		{
 			static unsigned int id = uniqueId();

@@ -17,20 +17,6 @@ void Base::update(const ALLEGRO_EVENT & ev, double time)
 	updateEnd(ev, time);
 }
 
-void Base::entityUpdated(const Game::Entity &entity)
-{
-	if (code_.match(entity))
-		collection_.insert(entity.getId());
-	else
-		collection_.erase(entity.getId());
-}
-
-static SystemManager &Base::Manager()
-{
-	static SystemManager &manager = SystemManager::getInstance();
-	return manager;
-}
-
 void Base::init()
 {
 	initialize();
@@ -54,5 +40,5 @@ void Base::entityUpdated(const Game::Entity &entity)
 	if (code_.match(entity.getCode()))
 		collection_.insert(entity.getId());
 	else
-		collection_.remove(entity.getId());
+		collection_.erase(entity.getId());
 }

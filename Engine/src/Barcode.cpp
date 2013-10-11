@@ -26,17 +26,17 @@ Barcode &Barcode::operator=(const Barcode &other)
 Barcode::~Barcode()
 {}
 
-bool Barcode::match(const std::bitset<COMPONENTS_MAX_NUMBER> &set)
+bool Barcode::match(const std::bitset<COMPONENTS_MAX_NUMBER> &set) const
 {
 	return((set & code_) == code_);
 }
 
-bool Barcode::match(const Entity &entity)
+bool Barcode::match(const Entity &entity) const
 {
 	return((entity.getCode().code_ & code_) == code_);
 }
 
-bool Barcode::match(const Barcode &other)
+bool Barcode::match(const Barcode &other) const
 {
 	return((other.code_ & code_) == code_);
 }
@@ -56,12 +56,12 @@ void Barcode::remove(unsigned int componentId)
 	applyChange(componentId, true);
 }
 
-bool Barcode::isEmpty()
+bool Barcode::isEmpty() const
 {
 	return (code_.none());
 }
 
-bool Barcode::isSet(unsigned int componentId)
+bool Barcode::isSet(unsigned int componentId) const
 {
 	return code_.test(componentId);
 }
