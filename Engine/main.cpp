@@ -13,6 +13,10 @@ int main(void)
 	// Tests
 	//
 
+	if (!al_init())
+		return EXIT_FAILURE;		
+
+
 	Game::Entity::Manager &entityManager = Game::Entity::getManager();
 	System::Manager &systemManager = System::getManager();
 
@@ -36,6 +40,21 @@ int main(void)
 	e1.addComponent<Component::cEmpty>();
 
 	systemManager.update(ALLEGRO_EVENT(), 3.0f);
+
+	int i = 0;
+	while (i < 1000)
+	{
+		if (i % 3)
+			e1 = entityManager.newEntity();
+		else
+			entityManager.deleteEntity(0);
+		if (i % 2)
+			e1.removeComponent<Component::cEmpty>();
+		else
+			e1.addComponent<Component::cEmpty>();
+		++i;
+		al_rest(0.1);
+	}
 
 	//
 	// Allegro Test

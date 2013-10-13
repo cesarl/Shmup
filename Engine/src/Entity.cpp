@@ -63,7 +63,9 @@ void Entity::reset()
 {
 	for (auto &e : components_)
 	{
-		delete e;
+		if (e)
+			delete e;
+		e = nullptr;
 	}
 	id_ = 0;
 }

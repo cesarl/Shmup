@@ -53,7 +53,7 @@ void Barcode::add(unsigned int componentId)
 
 void Barcode::remove(unsigned int componentId)
 {
-	applyChange(componentId, true);
+	applyChange(componentId, false);
 }
 
 bool Barcode::isEmpty() const
