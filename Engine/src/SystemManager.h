@@ -21,10 +21,32 @@ namespace System
 		void entityModified(unsigned int entityId);
 
 		template <class T>
-		T *addSystem(int priority, bool draw = false);
+		T *addSystem(int priority, bool draw = false)
+		{
+			auto &it = list_.find(typeid(T).name());
+
+			if (it != std::end(list_))
+				return static_cast<T*>(it->second);
+			auto sys = new T;
+			// todo assert sys is nullptr;
+			sys->init();
+			list_.insert(std::pair<const char *, Base*>(typeid(T).name(), sys));
+			if (draw)
+				drawList_.insert(std::pair<int, Base*>(priority, sys));
+			else
+				updateList_.insert(std::pair<int, Base*>(priority, sys));
+			return sys;
+		}
 
 		template <class T>
-		T *getSystem();
+		T *getSystem()
+		{
+			auto &it = list_.find(typeid(T).name);
+			if (it != std::end(list_))
+				return static_cast<T*>(it.second);
+			return std::nullptr;
+		}
+
 	private:
 		SystemManager();
 		virtual ~SystemManager();

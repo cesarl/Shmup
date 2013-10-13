@@ -15,6 +15,7 @@ Entity::Entity(unsigned int id, const std::string &tag, const std::string &layer
 // todo abort if (layer.size() > TAG_LENGTH)
 	tag_ = Utils::Tag(tag);
 	layer_ = Utils::Tag(layer);
+	components_.resize(COMPONENTS_MAX_NUMBER);
 }
 
 Entity::~Entity()
@@ -79,50 +80,6 @@ void Entity::reset()
 
 //const std::string &getTagString() const;
 //const std::string &getLayerString() const;
-
-
-template <typename T>
-bool Entity::hasComponent() const
-{
-	return code_.isSet<T>();
-}
-
-template <typename T>
-T *Entity::addComponent()
-{
-	unsigned int id = T::getTypeId();
-	if (hasComponent(id))
-	{
-		return static_cast<T*>(components_[id]);
-	}
-	T *tmp = new T;
-	// todo assert if new T fail
-	code_.add(id);
-	components_[id] = tmp;
-	System::Manager().entityModified(getId());
-	return tmp;
-}
-
-template <typename T>
-T *Entity::getComponent() const
-{
-	unsigned int id = T::getTypeId();
-	if (!hasComponent(id))
-		return std::nullptr;
-	return static_cast<T*>(components_[id]);
-}
-
-template <typename T>
-void Entity::removeComponent()
-{
-	unsigned int id = T::getTypeId();
-	if (!hasComponent(id))
-		return;
-	code_.remove(id);
-	delete components_[id];
-	components_[id]	= nullptr;
-	System::Manager().entityModified(getId());
-}
 
 Game::EntityManager &Entity::getManager()
 {
