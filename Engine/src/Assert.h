@@ -7,7 +7,7 @@
 
 inline void ASSERT(bool tof, const std::string &message)
 {
-//	std::assert(tof);
+	//	std::assert(tof);
 	static_cast<void>(message);
 }
 

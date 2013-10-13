@@ -53,7 +53,6 @@ int main(void)
 		else
 			e1.addComponent<Component::cEmpty>();
 		++i;
-		al_rest(0.1);
 	}
 
 	//
@@ -68,6 +67,6 @@ int main(void)
 	//	return EXIT_FAILURE;
 	//al_rest(1);
 	//al_destroy_display(dis);
-	//al_uninstall_system();
+	al_uninstall_system();
 	return EXIT_SUCCESS;
 }
