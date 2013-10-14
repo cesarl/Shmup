@@ -4,6 +4,7 @@
 #include <allegro5/allegro.h>
 #include "Singleton.h"
 #include "Assert.h"
+#include "Event.h"
 
 	class Window : public Utils::Singleton<Window>
 	{
@@ -26,9 +27,11 @@
 			display = al_get_current_display();
 			if (display)
 				al_destroy_display(display);
-			ASSERT(al_create_display(w, h) == NULL, "Creating display error");
+			display = al_create_display(w, h);
+			ASSERT(display == NULL, "Creating display error");
 			width_ = w;
 			height_ = h;
+			EventManager::getInstance().newWindow(display);
 		}
 	private:
 		Window()
