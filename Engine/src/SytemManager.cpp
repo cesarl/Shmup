@@ -36,9 +36,6 @@ void SystemManager::update(const ALLEGRO_EVENT &event, double time)
 		it != std::end(updateList_);
 		++it)
 	{
-		// clear entity modfied list
-		entityModified_.clear();
-
 		// update system
 		it->second->update(event, time);
 
@@ -51,6 +48,8 @@ void SystemManager::update(const ALLEGRO_EVENT &event, double time)
 				sys.second->entityUpdated(entity);
 			}
 		}
+		// clear entity modfied list
+		entityModified_.clear();
 	}
 }
 

@@ -29,7 +29,11 @@ namespace	System
 		const Game::Barcode &getCode() const;
 
 		template <typename T>
-		void require();
+		void require()
+		{
+			code_.add<T>();
+		}
+
 
 	protected:
 		std::set<unsigned int> collection_;

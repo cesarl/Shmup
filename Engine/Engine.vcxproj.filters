@@ -37,6 +37,15 @@
     <Filter Include="Header Files\Core">
       <UniqueIdentifier>{2c6d68ce-5a36-4a38-a2e2-c45e751b4d54}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Test">
+      <UniqueIdentifier>{36351fa1-cd87-4380-af2e-16d777dffc17}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Test\Component">
+      <UniqueIdentifier>{9546c4c1-4a13-4b58-85b3-f66be923f339}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Test\System">
+      <UniqueIdentifier>{72314f10-e923-460f-99d5-86d8aa298594}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -109,6 +118,12 @@
     </ClInclude>
     <ClInclude Include="src\Event.h">
       <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="test\Popsicle.h">
+      <Filter>Header Files\Test\Component</Filter>
+    </ClInclude>
+    <ClInclude Include="test\PopsicleUpdate.h">
+      <Filter>Header Files\Test\System</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

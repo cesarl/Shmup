@@ -43,6 +43,7 @@
     <ClCompile>
       <WarningLevel>Level3</WarningLevel>
       <Optimization>Disabled</Optimization>
+      <AdditionalIncludeDirectories>C:\Users\cesar\Documents\GitHub\Shmup\Engine\vendors;%(AdditionalIncludeDirectories)</AdditionalIncludeDirectories>
     </ClCompile>
     <Link>
       <GenerateDebugInformation>true</GenerateDebugInformation>
@@ -89,6 +90,8 @@
     <ClInclude Include="src\System.h" />
     <ClInclude Include="src\SystemManager.h" />
     <ClInclude Include="src\Window.h" />
+    <ClInclude Include="test\Popsicle.h" />
+    <ClInclude Include="test\PopsicleUpdate.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">

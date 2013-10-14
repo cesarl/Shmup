@@ -2,6 +2,7 @@
 # define	__ENTITY_H__
 
 #include <vector>
+#include <glm/glm.hpp>
 #include "Barcode.h"
 #include "StringId.hpp"
 #include "SystemManager.h"
@@ -28,11 +29,6 @@ namespace	Game
 		unsigned int getId() const;
 		bool hasComponent(unsigned int id) const;
 		void reset();
-		//const unsigned int getTagId() const;
-		//const unsigned int getLayerId() const;
-		//const std::string &getTagString() const;
-		//const std::string &getLayerString() const;
-
 
 		template <typename T>
 		bool hasComponent() const
@@ -61,7 +57,7 @@ namespace	Game
 		{
 			unsigned int id = T::getTypeId();
 			if (!hasComponent(id))
-				return std::nullptr;
+				return nullptr;
 			return static_cast<T*>(components_[id]);
 		}
 
@@ -82,6 +78,9 @@ namespace	Game
 		unsigned int id_;
 		Utils::Tag tag_;
 		Utils::Tag layer_;
+		glm::vec3 position_;
+		glm::vec3 rotation_;
+		glm::vec3 scale_;
 		Barcode code_;
 		std::vector<Component::Base*> components_;
 	};

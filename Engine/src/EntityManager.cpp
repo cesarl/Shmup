@@ -40,6 +40,7 @@ void EntityManager::deleteEntity(const Entity &entity)
 
 	collection_[id].reset();
 	freeIds_.push_back(id);
+	System::getManager().entityModified(id);
 }
 
 void EntityManager::deleteEntity(unsigned int entityId)

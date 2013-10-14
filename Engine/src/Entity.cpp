@@ -67,7 +67,7 @@ void Entity::reset()
 			delete e;
 		e = nullptr;
 	}
-	id_ = 0;
+	code_.reset();
 }
 
 //const unsigned int Entity::getTagId() const

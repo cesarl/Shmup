@@ -5,6 +5,7 @@
 #include "src/EmptyComponent.h"
 #include "src/System.h"
 #include "src/Core.h"
+#include "test/PopsicleUpdate.h"
 
 int main(void)
 {
@@ -19,6 +20,7 @@ int main(void)
 	System::Manager &systemManager = System::getManager();
 
 	systemManager.addSystem<System::sEmpty>(1);
+	systemManager.addSystem<System::sPopsicleUpdate>(2);
 
 	Game::Entity &e1 = entityManager.newEntity();
 	e1.addComponent<Component::cEmpty>();
@@ -28,6 +30,7 @@ int main(void)
 	e1.removeComponent<Component::cEmpty>();
 	e1.removeComponent<Component::cEmpty>();
 	e1.addComponent<Component::cEmpty>();
+	e1.addComponent<Component::cPopsicle>();
 
 	Core::getWindow().createWindow();
 	Core::getEvent().play();

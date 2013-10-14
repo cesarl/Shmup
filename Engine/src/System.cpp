@@ -24,12 +24,6 @@ void Base::init()
 	//ASSERT(!code_.isEmpty());
 }
 
-template <typename T>
-void Base::require()
-{
-	code_.add<T>();
-}
-
 const Game::Barcode &Base::getCode() const
 {
 	return code_;
