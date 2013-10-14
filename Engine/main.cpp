@@ -5,6 +5,7 @@
 #include "src/EmptyComponent.h"
 #include "src/System.h"
 #include "src/SystemManager.h"
+#include "src/Core.h"
 
 int main(void)
 {
@@ -54,6 +55,8 @@ int main(void)
 			e1.addComponent<Component::cEmpty>();
 		++i;
 	}
+
+	Core::getWindow().createWindow();
 
 	//
 	// Allegro Test

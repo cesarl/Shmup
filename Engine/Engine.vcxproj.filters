@@ -34,6 +34,9 @@
     <Filter Include="Source Files\Component">
       <UniqueIdentifier>{2083b572-26b9-4315-b133-4175b86dc54c}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Core">
+      <UniqueIdentifier>{2c6d68ce-5a36-4a38-a2e2-c45e751b4d54}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -97,6 +100,12 @@
     </ClInclude>
     <ClInclude Include="src\StringId.hpp">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Window.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Core.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

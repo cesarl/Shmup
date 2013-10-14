@@ -3,6 +3,10 @@
 
 namespace Utils
 {
+
+	// public singleton
+	// get instance is accessible
+
 	template				<class T>
 	class					Singleton
 	{

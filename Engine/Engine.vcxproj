@@ -76,6 +76,7 @@
     <ClInclude Include="src\Barcode.h" />
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\ComponentManager.h" />
+    <ClInclude Include="src\Core.h" />
     <ClInclude Include="src\EmptyComponent.h" />
     <ClInclude Include="src\EmptySystem.h" />
     <ClInclude Include="src\Entity.h" />
@@ -86,6 +87,7 @@
     <ClInclude Include="src\StringId.hpp" />
     <ClInclude Include="src\System.h" />
     <ClInclude Include="src\SystemManager.h" />
+    <ClInclude Include="src\Window.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
