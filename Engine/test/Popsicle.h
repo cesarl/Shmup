@@ -12,8 +12,8 @@ namespace  Component
 	struct cPopsicle : public ComponentBase<cPopsicle>
 	{
 		cPopsicle()
-			: generation(500),
-			age(500)
+			: generation(60),
+			age(100)
 		{}
 
 		virtual ~cPopsicle(){}

@@ -42,7 +42,7 @@ namespace System
 						e3.addComponent<Component::cPopsicle>()->generation = pop->age;
 						e3.getComponent<Component::cPopsicle>()->age = pop->age;
 						Game::Entity::getManager().deleteEntity(e);
-						std::cout << e3.getId() << std::endl;
+//						std::cout << e2.getId() << " - " << e3.getId() << std::endl;
 					}
 					return;
 					(void)time;
