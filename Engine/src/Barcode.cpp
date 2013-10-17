@@ -2,7 +2,7 @@
 #include "Entity.h"
 #include "Component.h"
 
-using namespace Game;
+using namespace Utils;
 
 Barcode::Barcode()
 {}

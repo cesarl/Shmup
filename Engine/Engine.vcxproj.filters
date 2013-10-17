@@ -49,16 +49,16 @@
     <Filter Include="Source Files\Utils">
       <UniqueIdentifier>{e234cfb6-f9ef-435d-bca4-b406a1cb3f2e}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Entity">
+      <UniqueIdentifier>{55fcc9ab-2268-4165-ab53-71c82e5aa903}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entity">
+      <UniqueIdentifier>{f10b86b5-0663-44d3-a9ec-58174209f33d}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Barcode.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
-    <ClCompile Include="src\Entity.cpp">
-      <Filter>Source Files\Game</Filter>
     </ClCompile>
     <ClCompile Include="src\EmptySystem.cpp">
       <Filter>Source Files\System</Filter>
@@ -66,14 +66,20 @@
     <ClCompile Include="src\System.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
-    <ClCompile Include="src\EntityManager.cpp">
-      <Filter>Source Files\Game</Filter>
-    </ClCompile>
     <ClCompile Include="src\SytemManager.cpp">
       <Filter>Source Files\System</Filter>
     </ClCompile>
     <ClCompile Include="src\StringId.cpp">
       <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Barcode.cpp">
+      <Filter>Source Files\Utils</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Entity.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="src\EntityManager.cpp">
+      <Filter>Source Files\Entity</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -83,17 +89,11 @@
     <ClInclude Include="src\Assert.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Barcode.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="src\EmptySystem.h">
       <Filter>Header Files\System</Filter>
     </ClInclude>
     <ClInclude Include="src\System.h">
       <Filter>Header Files\System</Filter>
-    </ClInclude>
-    <ClInclude Include="src\Entity.h">
-      <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="src\ComponentManager.h">
       <Filter>Header Files\Component</Filter>
@@ -103,9 +103,6 @@
     </ClInclude>
     <ClInclude Include="src\Singleton.h">
       <Filter>Header Files\Utils</Filter>
-    </ClInclude>
-    <ClInclude Include="src\EntityManager.h">
-      <Filter>Header Files\Game</Filter>
     </ClInclude>
     <ClInclude Include="src\EmptyComponent.h">
       <Filter>Header Files\Component</Filter>
@@ -130,6 +127,15 @@
     </ClInclude>
     <ClInclude Include="test\PopsicleUpdate.h">
       <Filter>Header Files\Test\System</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Barcode.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Entity.h">
+      <Filter>Header Files\Entity</Filter>
+    </ClInclude>
+    <ClInclude Include="src\EntityManager.h">
+      <Filter>Header Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

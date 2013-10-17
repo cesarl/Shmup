@@ -30,7 +30,7 @@ void SystemManager::init()
 
 void SystemManager::update(const ALLEGRO_EVENT &event, double time)
 {
-	Game::Entity::Manager &entityManager = Game::Entity::Manager::getInstance();
+	EntityManager &entityManager = EntityManager::getInstance();
 
 	for (std::map<int, Base*>::iterator it = std::begin(updateList_);
 		it != std::end(updateList_);
@@ -42,7 +42,7 @@ void SystemManager::update(const ALLEGRO_EVENT &event, double time)
 		// update system entities collection
 		for (auto &i : entityModified_)
 		{
-			Game::Entity &entity = entityManager.getEntity(i);
+			Entity &entity = entityManager.getEntity(i);
 			for (auto &sys : list_)
 			{
 				sys.second->entityUpdated(entity);

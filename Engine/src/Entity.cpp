@@ -4,15 +4,11 @@
 #include "EntityManager.h"
 #include "Component.h"
 
-using namespace Game;
-
-// TODO RESET() !
-
 Entity::Entity(unsigned int id, const std::string &tag, const std::string &layer)
 	: id_(id)
 {
-// todo abort if (tag.size() > TAG_LENGTH)
-// todo abort if (layer.size() > TAG_LENGTH)
+	// todo abort if (tag.size() > TAG_LENGTH)
+	// todo abort if (layer.size() > TAG_LENGTH)
 	tag_ = Utils::Tag(tag);
 	layer_ = Utils::Tag(layer);
 	components_.resize(COMPONENTS_MAX_NUMBER);
@@ -44,7 +40,7 @@ Entity &Entity::operator=(const Entity &other)
 	return *this;
 }
 
-const Barcode &Entity::getCode() const
+const Utils::Barcode &Entity::getCode() const
 {
 	return code_;
 }
@@ -70,21 +66,34 @@ void Entity::reset()
 	code_.reset();
 }
 
-//const unsigned int Entity::getTagId() const
-//{
-//	return tag_;
-//}
-//
-//const unsigned int getLayerId() const
-//{
-//	return id_;
-//}
-
-//const std::string &getTagString() const;
-//const std::string &getLayerString() const;
-
-Game::EntityManager &Entity::getManager()
+EntityManager &Entity::getManager()
 {
-	static auto &manager = Entity::Manager::getInstance();
+	static auto &manager = EntityManager::getInstance();
 	return manager;
+}
+
+glm::mat4 &Entity::getLocalTransform()
+{
+	return localTransform_;
+}
+
+const glm::mat4 &Entity::getLocalTransform() const
+{
+	return localTransform_;
+}
+
+
+glm::mat4 &Entity::getGlobalTransform()
+{
+	return globalTransform_;
+}
+
+const glm::mat4 &Entity::getGlobalTransform() const
+{
+	return globalTransform_;
+}
+
+void Entity::setLocalTranform(const glm::mat4 &trans)
+{
+	localTransform_ = trans;
 }

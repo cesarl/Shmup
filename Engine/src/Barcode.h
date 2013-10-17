@@ -9,21 +9,21 @@ namespace   Component
 	struct  Base;
 };
 
-namespace	Game
-{
-	class	Entity;
+class	Entity;
 
+namespace   Utils
+{
 	class Barcode
 	{
 	public:
 
 		Barcode();
-		Barcode(const Entity &entity);
+		Barcode(const ::Entity &entity);
 		Barcode(const Barcode &other);
 		Barcode &operator=(const Barcode &other);
 		~Barcode();
 		bool match(const std::bitset<COMPONENTS_MAX_NUMBER> &set) const;
-		bool match(const Entity &entity) const;
+		bool match(const ::Entity &entity) const;
 		bool match(const Barcode &entity) const;
 		void reset();
 		void add(unsigned int componentId);

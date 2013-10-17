@@ -2,8 +2,6 @@
 #include <cassert>
 #include "EntityManager.h"
 
-using namespace Game;
-
 EntityManager::EntityManager()
 	: idCounter_(0)
 {

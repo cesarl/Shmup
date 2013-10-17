@@ -25,7 +25,7 @@ namespace System
 		{
 			for (auto &c : collection_)
 			{
-				Game::Entity &e = Game::Entity::getManager().getEntity(c);
+				Entity &e = Entity::getManager().getEntity(c);
 
 				Component::cPopsicle *pop = e.getComponent<Component::cPopsicle>();
 
@@ -41,12 +41,12 @@ namespace System
 					e.removeComponent<Component::cEmpty>();
 				if (pop->divideTime <= 0.0f && pop->persisttime > 0.0f)
 				{
-					Game::Entity &n = Game::Entity::getManager().newEntity();
+					Entity &n = Entity::getManager().newEntity();
 					n.addComponent<Component::cPopsicle>()->persisttime = pop->persisttime;
 					n.addComponent<Component::cEmpty>();
 				}
 				if (pop->lifetime <= 0.0f)
-					Game::Entity::getManager().deleteEntity(e);
+					Entity::getManager().deleteEntity(e);
 
 			}
 		}

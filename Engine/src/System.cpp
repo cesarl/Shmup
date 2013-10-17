@@ -24,12 +24,12 @@ void Base::init()
 	//ASSERT(!code_.isEmpty());
 }
 
-const Game::Barcode &Base::getCode() const
+const Utils::Barcode &Base::getCode() const
 {
 	return code_;
 }
 
-void Base::entityUpdated(const Game::Entity &entity)
+void Base::entityUpdated(const Entity &entity)
 {
 	if (code_.match(entity.getCode()))
 		collection_.insert(entity.getId());

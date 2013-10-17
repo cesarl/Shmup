@@ -16,13 +16,13 @@ int main(void)
 
 	Core::getInstance().init();
 
-	Game::Entity::Manager &entityManager = Game::Entity::getManager();
+	EntityManager &entityManager = Entity::getManager();
 	System::Manager &systemManager = System::getManager();
 
 	systemManager.addSystem<System::sEmpty>(1);
 	systemManager.addSystem<System::sPopsicleUpdate>(2);
 
-	Game::Entity &e1 = entityManager.newEntity();
+	Entity &e1 = entityManager.newEntity();
 	e1.addComponent<Component::cEmpty>();
 	e1.removeComponent<Component::cEmpty>();
 	e1.addComponent<Component::cEmpty>();

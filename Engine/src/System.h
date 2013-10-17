@@ -7,11 +7,13 @@
 
 class Entity;
 
-namespace	Game
+namespace	Utils
 {
 	class	Barcode;
-	class   Entity;
 }
+
+class       Entity;
+class       EntityManager;
 
 namespace	System
 {
@@ -24,9 +26,9 @@ namespace	System
 		Base();
 		virtual ~Base();
 		void update(const ALLEGRO_EVENT & ev, double time);
-		void entityUpdated(const Game::Entity &entity);
+		void entityUpdated(const Entity &entity);
 		void init();
-		const Game::Barcode &getCode() const;
+		const Utils::Barcode &getCode() const;
 
 		template <typename T>
 		void require()
@@ -37,7 +39,7 @@ namespace	System
 
 	protected:
 		std::set<unsigned int> collection_;
-		Game::Barcode code_;
+		Utils::Barcode code_;
 	private:
 		virtual void updateBegin(const ALLEGRO_EVENT & ev, double time) = 0;
 		virtual void updateEnd(const ALLEGRO_EVENT & ev, double time) = 0;
