@@ -13,7 +13,15 @@ namespace Utils
 			: str_(tag),
 			id_(0)
 		{
-			id_ = getId_(tag);
+			if (list_.find(tag) != std::end(list_))
+			{
+				id_ = list_[tag];
+			}
+			else
+			{
+				id_ = list_.size() + 1;
+				list_.insert(std::pair<std::string, unsigned int>(tag, id_));
+			}
 		}
 
 		Tag(const Tag &other)
@@ -52,20 +60,9 @@ namespace Utils
 			return (id_ != other.id_);
 		}
 	private:
-		unsigned int getId_(const std::string &tag)
-		{
-			static unsigned int idCounter = 0;
-			static std::map<std::string, unsigned int> list;
-
-			std::map<std::string, unsigned int>::iterator it = list.find(tag);
-			if (it != std::end(list))
-				return it->second;
-			list.insert(std::pair<std::string, unsigned int>(tag, idCounter));
-			return idCounter++;
-		}
-
 		std::string str_;
 		unsigned int id_;
+		static std::map<std::string, unsigned int> list_;
 	};
 };
 

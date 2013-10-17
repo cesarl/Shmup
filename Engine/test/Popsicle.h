@@ -12,14 +12,21 @@ namespace  Component
 	struct cPopsicle : public ComponentBase<cPopsicle>
 	{
 		cPopsicle()
-			: generation(60),
-			age(100)
+			: persisttime(3.0f), // time remaining for split
+			divideTime(0.5f), // time remaining before split
+			removeComponentTime(1.5f), // time remaining before cpt remove
+			addComponentTime(1.0f), // time remaining before cpt add
+			lifetime(2.f) // lifetime
+
 		{}
 
-		virtual ~cPopsicle(){}
+		float persisttime;
+		float divideTime;
+		float removeComponentTime;
+		float addComponentTime;
+		float lifetime;
 
-		int generation;
-		int age;
+		virtual ~cPopsicle(){}
 	};
 };
 

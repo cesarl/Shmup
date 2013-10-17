@@ -70,6 +70,7 @@
     <ClCompile Include="src\EmptySystem.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\EntityManager.cpp" />
+    <ClCompile Include="src\StringId.cpp" />
     <ClCompile Include="src\System.cpp" />
     <ClCompile Include="src\SytemManager.cpp" />
   </ItemGroup>

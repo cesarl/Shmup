@@ -32,6 +32,10 @@ int main(void)
 	e1.addComponent<Component::cEmpty>();
 	e1.addComponent<Component::cPopsicle>();
 
+	std::cout << Component::cEmpty::getTypeId() << std::endl;
+	std::cout << Component::cPopsicle::getTypeId() << std::endl;
+	std::cout << Component::cEmpty::getTypeId() << std::endl;
+
 	Core::getWindow().createWindow();
 	Core::getEvent().play();
 

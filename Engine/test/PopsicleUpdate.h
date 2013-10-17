@@ -3,6 +3,7 @@
 
 #include	"../src/System.h"
 #include    "Popsicle.h"
+#include    "../src/EmptyComponent.h"
 
 namespace System
 {
@@ -22,31 +23,33 @@ namespace System
 
 		virtual void mainUpdate(const ALLEGRO_EVENT & ev, double time) override
 		{
-			for (auto c : collection_)
+			for (unsigned int i = 0, mi = Game::Entity::getManager().getEnd(); i < mi; ++i)
 			{
-				Game::Entity &e = Game::Entity::getManager().getEntity(c);
+				Game::Entity &e = Game::Entity::getManager().getList()[i];
 
+				if (!code_.match(e))
+					continue;
 				Component::cPopsicle *pop = e.getComponent<Component::cPopsicle>();
 
-				--pop->generation;
+				pop->persisttime -= time;
+				pop->divideTime -= time;
+				pop->removeComponentTime -= time;
+				pop->addComponentTime -= time;
+				pop->lifetime -= time;
 
-				if (pop->generation <= 0)
+				if (pop->addComponentTime <= 0.0f)
+					e.addComponent<Component::cEmpty>();
+				if (pop->removeComponentTime <= 0.0f)
+					e.removeComponent<Component::cEmpty>();
+				if (pop->divideTime <= 0.0f && pop->persisttime > 0.0f)
 				{
-					pop->age--;
-					if (pop->age > 0)
-					{
-						Game::Entity &e2 = Game::Entity::getManager().newEntity();
-						e2.addComponent<Component::cPopsicle>()->generation = pop->age;
-						e2.getComponent<Component::cPopsicle>()->age = pop->age;
-						Game::Entity &e3 = Game::Entity::getManager().newEntity();
-						e3.addComponent<Component::cPopsicle>()->generation = pop->age;
-						e3.getComponent<Component::cPopsicle>()->age = pop->age;
-						Game::Entity::getManager().deleteEntity(e);
-//						std::cout << e2.getId() << " - " << e3.getId() << std::endl;
-					}
-					return;
-					(void)time;
+					Game::Entity &n = Game::Entity::getManager().newEntity();
+					n.addComponent<Component::cPopsicle>()->persisttime = pop->persisttime;
+					n.addComponent<Component::cEmpty>();
 				}
+				if (pop->lifetime <= 0.0f)
+					Game::Entity::getManager().deleteEntity(e);
+
 			}
 		}
 

@@ -12,7 +12,7 @@
 class					EventManager : public Utils::Singleton<EventManager>
 {
 public:
-	void					draw(float time, const ALLEGRO_EVENT &ev)
+	void					draw(float time, float timedif, const ALLEGRO_EVENT &ev)
 	{
 		static double			fps = 0;
 		static int				frames_done = 0;
@@ -83,19 +83,20 @@ public:
 //		while (this->run_->getValue())
 		while (run)
 		{
-			time = al_get_time();
 			al_wait_for_event(this->eventQueue_, &ev);
+			time = al_get_time();
+			static float pasttime = al_get_time();
 			if (ev.type == ALLEGRO_EVENT_TIMER)
 			{
 				canDraw = true;
 			}
 			if (upt_)
 			{
-				this->upt_(time, ev);
+				this->upt_(time - pasttime, ev);
 			}
 			else
 			{
-				sysManager_.update(ev, time);
+				sysManager_.update(ev, time - pasttime);
 				//camera.input(time, ev);
 			}
 			if (canDraw && al_is_event_queue_empty(this->eventQueue_))
@@ -104,11 +105,11 @@ public:
 				al_clear_to_color(al_map_rgb(0,0,0));
 				if (draw_)
 				{
-					this->draw_(time, ev);
+					this->draw_(time - pasttime, ev);
 				}
 				else
 				{
-					draw(time, ev);
+					draw(time, time - pasttime, ev);
 				}
 				al_flip_display();
 				canDraw = false;
@@ -118,6 +119,7 @@ public:
 				//stop();
 				run = false;
 			}
+			pasttime = time;
 		}
 	}
 	void					stop()

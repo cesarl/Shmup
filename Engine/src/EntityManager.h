@@ -17,6 +17,9 @@ namespace Game
 		Entity &newEntity();
 		void deleteEntity(const Entity &entity);
 		void deleteEntity(unsigned int entityId);
+		void logNumber();
+		std::vector<Entity> &getList();
+		unsigned int getEnd();
 	private:
 		EntityManager();
 		virtual ~EntityManager();

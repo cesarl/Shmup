@@ -48,7 +48,6 @@ namespace	Game
 			// todo assert if new T fail
 			code_.add(id);
 			components_[id] = tmp;
-			System::getManager().entityModified(getId());
 			return tmp;
 		}
 
@@ -70,7 +69,6 @@ namespace	Game
 			code_.remove(id);
 			delete components_[id];
 			components_[id]	= nullptr;
-			System::getManager().entityModified(getId());
 		}
 
 		static Game::EntityManager &getManager();

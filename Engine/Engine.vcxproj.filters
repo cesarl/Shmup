@@ -46,6 +46,9 @@
     <Filter Include="Header Files\Test\System">
       <UniqueIdentifier>{72314f10-e923-460f-99d5-86d8aa298594}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Utils">
+      <UniqueIdentifier>{e234cfb6-f9ef-435d-bca4-b406a1cb3f2e}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -68,6 +71,9 @@
     </ClCompile>
     <ClCompile Include="src\SytemManager.cpp">
       <Filter>Source Files\System</Filter>
+    </ClCompile>
+    <ClCompile Include="src\StringId.cpp">
+      <Filter>Source Files\Utils</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
