@@ -23,12 +23,10 @@ namespace System
 
 		virtual void mainUpdate(const ALLEGRO_EVENT & ev, double time) override
 		{
-			for (unsigned int i = 0, mi = Game::Entity::getManager().getEnd(); i < mi; ++i)
+			for (auto &c : collection_)
 			{
-				Game::Entity &e = Game::Entity::getManager().getList()[i];
+				Game::Entity &e = Game::Entity::getManager().getEntity(c);
 
-				if (!code_.match(e))
-					continue;
 				Component::cPopsicle *pop = e.getComponent<Component::cPopsicle>();
 
 				pop->persisttime -= time;

@@ -1,3 +1,3 @@
 #include "StringId.hpp"
 
-std::map<std::string, unsigned int> Utils::Tag::list_;
+std::unordered_map<std::string, unsigned int> Utils::Tag::list_;

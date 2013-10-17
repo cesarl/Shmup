@@ -1,7 +1,7 @@
 #ifndef   __STRING_ID_HPP__
 # define  __STRING_ID_HPP__
 
-#include <map>
+#include <unordered_map>
 #include <string>
 
 namespace Utils
@@ -62,7 +62,7 @@ namespace Utils
 	private:
 		std::string str_;
 		unsigned int id_;
-		static std::map<std::string, unsigned int> list_;
+		static std::unordered_map<std::string, unsigned int> list_;
 	};
 };
 

@@ -69,6 +69,6 @@ void EntityManager::deleteEntity(unsigned int entityId)
 
 void EntityManager::logNumber()
 {
-//	if (idCounter_ % 50 == 0)
-//		std::cout << "Active entity " << idCounter_ << std::endl;
+	if (idCounter_ % 50 == 0)
+		std::cout << "Active entity " << idCounter_ << std::endl;
 }
