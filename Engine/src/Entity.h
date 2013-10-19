@@ -30,6 +30,9 @@ public:
 	const glm::mat4 &getGlobalTransform() const;
 	glm::mat4 &getGlobalTransform();
 	void setLocalTranform(const glm::mat4 &trans);
+	void addSystem(System::Base *sys);
+	void removeSystem(System::Base *sys);
+	bool isPartOfSystem(System::Base *sys) const;
 
 	template <typename T>
 	bool hasComponent() const
@@ -49,7 +52,7 @@ public:
 		// todo assert if new T fail
 		code_.add(id);
 		components_[id] = tmp;
-		System::getManager().entityModified(getId());
+		systemManager_.componentAdded<T>(*this);
 		return tmp;
 	}
 
@@ -71,7 +74,8 @@ public:
 		code_.remove(id);
 		delete components_[id];
 		components_[id]	= nullptr;
-		System::getManager().entityModified(getId());
+		informSystemsAboutRemovedCpt_();
+		// component remove -> signal to system
 	}
 
 	static EntityManager &getManager();
@@ -83,6 +87,10 @@ private:
 	glm::mat4 globalTransform_;
 	Utils::Barcode code_;
 	std::vector<Component::Base*> components_;
+	std::list<System::Base*> systems_;
+	static System::SystemManager &systemManager_;
+
+	void informSystemsAboutRemovedCpt_();
 };
 
 #endif		//__ENTITY_H__

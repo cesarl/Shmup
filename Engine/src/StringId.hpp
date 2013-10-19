@@ -11,16 +11,19 @@ namespace Utils
 	public:
 		Tag(const std::string &tag = "")
 			: str_(tag),
-			id_(0)
+			id_(1)
 		{
-			if (list_.find(tag) != std::end(list_))
+			if (tag.length())
 			{
-				id_ = list_[tag];
-			}
-			else
-			{
-				id_ = list_.size() + 1;
-				list_.insert(std::pair<std::string, unsigned int>(tag, id_));
+				if (list_.find(tag) != std::end(list_))
+				{
+					id_ = list_[tag];
+				}
+				else
+				{
+					id_ = list_.size() + 1;
+					list_.insert(std::pair<std::string, unsigned int>(tag, id_));
+				}
 			}
 		}
 
@@ -59,10 +62,17 @@ namespace Utils
 		{
 			return (id_ != other.id_);
 		}
+
 	private:
 		std::string str_;
 		unsigned int id_;
 		static std::unordered_map<std::string, unsigned int> list_;
+		static std::unordered_map<std::string, unsigned int> init()
+		{
+			std::unordered_map<std::string, unsigned int> map;
+			map[""] = 0;
+			return map;
+		}
 	};
 };
 

@@ -2,9 +2,13 @@
 # define    __SYSTEM_MANAGER_H__
 
 #include    <map>
+#include    <list>
+#include    <unordered_map>
 #include    <unordered_set>
 #include    <allegro5/allegro.h>
 #include    "Singleton.h"
+
+class Entity;
 
 namespace System
 {
@@ -18,7 +22,6 @@ namespace System
 		void init();
 		void update(const ALLEGRO_EVENT &event, double time);
 		void draw(const ALLEGRO_EVENT &event, double time);
-		void entityModified(unsigned int entityId);
 
 		template <class T>
 		T *addSystem(int priority, bool draw = false)
@@ -47,6 +50,32 @@ namespace System
 			return std::nullptr;
 		}
 
+		template <class T, class Sys>
+		void subscribeToAdd(Sys *sys)
+		{
+			unsigned int id = T::getTypeId();
+			if (addSubscribers_.find(id) != std::end(addSubscribers_))
+			{
+				if (std::find(std::begin(addSubscribers_[id]), std::end(addSubscribers_[id]), sys) == std::end(addSubscribers_[0]))
+					addSubscribers_[id].push_back(sys);
+				return;
+			}
+			addSubscribers_.emplace(id, std::list<System::Base*>());
+			addSubscribers_[id].push_back(sys);
+		}
+
+		template <class T>
+		void componentAdded(Entity &e)
+		{
+			unsigned int id = T::getTypeId();
+			if (addSubscribers_.find(id) == std::end(addSubscribers_))
+				return;
+			for (auto &i : addSubscribers_[id])
+			{
+				i->entityUpdated(e);
+			}
+		}
+
 	private:
 		SystemManager();
 		virtual ~SystemManager();
@@ -54,7 +83,7 @@ namespace System
 		std::multimap<int, Base*> updateList_;
 		std::multimap<int, Base*> drawList_;
 		std::map<const char *, Base*> list_;
-		std::unordered_set<unsigned int> entityModified_;
+		std::unordered_map<unsigned int, std::list<System::Base*> > addSubscribers_;
 	};
 
 	static SystemManager &getManager()

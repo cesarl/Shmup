@@ -23,18 +23,18 @@ int main(void)
 	systemManager.addSystem<System::sPopsicleUpdate>(2);
 
 	Entity &e1 = entityManager.newEntity();
-	e1.addComponent<Component::cEmpty>();
-	e1.removeComponent<Component::cEmpty>();
-	e1.addComponent<Component::cEmpty>();
-	e1.addComponent<Component::cEmpty>();
-	e1.removeComponent<Component::cEmpty>();
-	e1.removeComponent<Component::cEmpty>();
+	//e1.addComponent<Component::cEmpty>();
+	//e1.removeComponent<Component::cEmpty>();
+	//e1.addComponent<Component::cEmpty>();
+	//e1.addComponent<Component::cEmpty>();
+	//e1.removeComponent<Component::cEmpty>();
+	//e1.removeComponent<Component::cEmpty>();
 	e1.addComponent<Component::cEmpty>();
 	e1.addComponent<Component::cPopsicle>();
 
-	std::cout << Component::cEmpty::getTypeId() << std::endl;
-	std::cout << Component::cPopsicle::getTypeId() << std::endl;
-	std::cout << Component::cEmpty::getTypeId() << std::endl;
+	//std::cout << Component::cEmpty::getTypeId() << std::endl;
+	//std::cout << Component::cPopsicle::getTypeId() << std::endl;
+	//std::cout << Component::cEmpty::getTypeId() << std::endl;
 
 	Core::getWindow().createWindow();
 	Core::getEvent().play();

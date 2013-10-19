@@ -38,18 +38,6 @@ void SystemManager::update(const ALLEGRO_EVENT &event, double time)
 	{
 		// update system
 		it->second->update(event, time);
-
-		// update system entities collection
-		for (auto &i : entityModified_)
-		{
-			Entity &entity = entityManager.getEntity(i);
-			for (auto &sys : list_)
-			{
-				sys.second->entityUpdated(entity);
-			}
-		}
-		// clear entity modfied list
-		entityModified_.clear();
 	}
 }
 
@@ -59,9 +47,4 @@ void SystemManager::draw(const ALLEGRO_EVENT &event, double time)
 	{
 		e.second->update(event, time);
 	}	
-}
-
-void SystemManager::entityModified(unsigned int entityId)
-{
-	entityModified_.insert(entityId);
 }

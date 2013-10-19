@@ -12,19 +12,19 @@ namespace  Component
 	struct cPopsicle : public ComponentBase<cPopsicle>
 	{
 		cPopsicle()
-			: persisttime(3.0f), // time remaining for split
-			divideTime(0.5f), // time remaining before split
-			removeComponentTime(1.5f), // time remaining before cpt remove
-			addComponentTime(1.0f), // time remaining before cpt add
-			lifetime(2.f) // lifetime
+			: persisttime(500), // time remaining for split
+			divideTime(10), // time remaining before split
+			removeComponentTime(8), // time remaining before cpt remove
+			addComponentTime(7), // time remaining before cpt add
+			lifetime(10) // lifetime
 
 		{}
 
-		float persisttime;
-		float divideTime;
-		float removeComponentTime;
-		float addComponentTime;
-		float lifetime;
+		int persisttime;
+		int divideTime;
+		int removeComponentTime;
+		int addComponentTime;
+		int lifetime;
 
 		virtual ~cPopsicle(){}
 	};

@@ -29,25 +29,26 @@ namespace System
 
 				Component::cPopsicle *pop = e.getComponent<Component::cPopsicle>();
 
-				pop->persisttime -= time;
-				pop->divideTime -= time;
-				pop->removeComponentTime -= time;
-				pop->addComponentTime -= time;
-				pop->lifetime -= time;
+				--pop->persisttime;
+				--pop->divideTime;
+				--pop->removeComponentTime;
+				--pop->addComponentTime;
+				--pop->lifetime;
 
-				if (pop->addComponentTime <= 0.0f)
+				if (pop->addComponentTime <= 0)
 					e.addComponent<Component::cEmpty>();
-				if (pop->removeComponentTime <= 0.0f)
+				if (pop->removeComponentTime <= 0)
 					e.removeComponent<Component::cEmpty>();
-				if (pop->divideTime <= 0.0f && pop->persisttime > 0.0f)
+				if (pop->lifetime <= 1 && pop->persisttime > 0)
 				{
 					Entity &n = Entity::getManager().newEntity();
 					n.addComponent<Component::cPopsicle>()->persisttime = pop->persisttime;
 					n.addComponent<Component::cEmpty>();
 				}
-				if (pop->lifetime <= 0.0f)
+				if (pop->lifetime <= 0)
+				{
 					Entity::getManager().deleteEntity(e);
-
+				}
 			}
 		}
 

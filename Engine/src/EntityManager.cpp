@@ -49,24 +49,19 @@ Entity &EntityManager::newEntity()
 
 void EntityManager::deleteEntity(const Entity &entity)
 {
-	unsigned int id = entity.getId();
-
-	collection_[id].reset();
-	freeIds_.push_back(id);
-	System::getManager().entityModified(id);
-	logNumber();
+	deleteEntity(entity.getId());
 }
 
 void EntityManager::deleteEntity(unsigned int entityId)
 {
 	collection_[entityId].reset();
 	freeIds_.push_back(entityId);
-	System::getManager().entityModified(entityId);
+	//todo :  signal to system that an entity has been deleted
 	logNumber();
 }
 
 void EntityManager::logNumber()
 {
-	if (idCounter_ % 50 == 0)
+	if (idCounter_ % 1000 == 0)
 		std::cout << "Active entity " << idCounter_ << std::endl;
 }
