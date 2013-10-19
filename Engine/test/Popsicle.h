@@ -12,7 +12,7 @@ namespace  Component
 	struct cPopsicle : public ComponentBase<cPopsicle>
 	{
 		cPopsicle()
-			: persisttime(500), // time remaining for split
+			: persisttime(100), // time remaining for split
 			divideTime(10), // time remaining before split
 			removeComponentTime(8), // time remaining before cpt remove
 			addComponentTime(7), // time remaining before cpt add
