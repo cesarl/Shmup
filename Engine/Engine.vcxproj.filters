@@ -55,6 +55,18 @@
     <Filter Include="Source Files\Entity">
       <UniqueIdentifier>{f10b86b5-0663-44d3-a9ec-58174209f33d}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Common">
+      <UniqueIdentifier>{75ce0623-4f15-4b19-be56-9fbbccac0cf3}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Common\Components">
+      <UniqueIdentifier>{97864e4b-2772-47d1-abf1-af915ed3d65b}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Common\Systems">
+      <UniqueIdentifier>{bc0ace1a-80d2-4d01-9370-0e791d311dad}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Core">
+      <UniqueIdentifier>{15412348-3907-410a-88d7-2e2cc2368526}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <ClCompile Include="main.cpp">
@@ -81,8 +93,8 @@
     <ClCompile Include="src\EntityManager.cpp">
       <Filter>Source Files\Entity</Filter>
     </ClCompile>
-    <ClCompile Include="src\Ressource.cpp">
-      <Filter>Source Files\Game</Filter>
+    <ClCompile Include="src\Resource.cpp">
+      <Filter>Source Files\Core</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -140,14 +152,23 @@
     <ClInclude Include="src\Settings.h">
       <Filter>Header Files\Core</Filter>
     </ClInclude>
-    <ClInclude Include="src\Ressource.h">
-      <Filter>Header Files\Game</Filter>
-    </ClInclude>
     <ClInclude Include="src\SmartPointer.h">
       <Filter>Header Files\Utils</Filter>
     </ClInclude>
     <ClInclude Include="src\SmartPointer.hpp">
       <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Bitmap.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\File.h">
+      <Filter>Header Files\Utils</Filter>
+    </ClInclude>
+    <ClInclude Include="src\ARessource.h">
+      <Filter>Header Files\Core</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Resource.h">
+      <Filter>Header Files\Core</Filter>
     </ClInclude>
   </ItemGroup>
 </Project>

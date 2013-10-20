@@ -6,10 +6,14 @@
 #include "src/System.h"
 #include "src/Core.h"
 #include "test/PopsicleUpdate.h"
+#include "src/Bitmap.h"
+#include "src/Resource.h"
+
+template<class DataType>
+std::map<std::string, DataType *> Resource<DataType>::_map;
 
 int main(void)
 {
-
 	//
 	// Tests
 	//
@@ -35,6 +39,10 @@ int main(void)
 	//std::cout << Component::cEmpty::getTypeId() << std::endl;
 	//std::cout << Component::cPopsicle::getTypeId() << std::endl;
 	//std::cout << Component::cEmpty::getTypeId() << std::endl;
+
+	Resource<Bitmap> lol("prout");
+	lol.fromFile("prout.jpg");
+	&lol;
 
 	Core::getWindow().createWindow();
 	Core::getEvent().play();

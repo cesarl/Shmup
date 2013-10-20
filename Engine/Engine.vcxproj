@@ -70,13 +70,15 @@
     <ClCompile Include="src\EmptySystem.cpp" />
     <ClCompile Include="src\Entity.cpp" />
     <ClCompile Include="src\EntityManager.cpp" />
-    <ClCompile Include="src\Ressource.cpp" />
+    <ClCompile Include="src\Resource.cpp" />
     <ClCompile Include="src\StringId.cpp" />
     <ClCompile Include="src\System.cpp" />
     <ClCompile Include="src\SytemManager.cpp" />
   </ItemGroup>
   <ItemGroup>
+    <ClInclude Include="src\ARessource.h" />
     <ClInclude Include="src\Barcode.h" />
+    <ClInclude Include="src\Bitmap.h" />
     <ClInclude Include="src\Component.h" />
     <ClInclude Include="src\ComponentManager.h" />
     <ClInclude Include="src\Core.h" />
@@ -86,7 +88,8 @@
     <ClInclude Include="src\Assert.h" />
     <ClInclude Include="src\EntityManager.h" />
     <ClInclude Include="src\Event.h" />
-    <ClInclude Include="src\Ressource.h" />
+    <ClInclude Include="src\File.h" />
+    <ClInclude Include="src\Resource.h" />
     <ClInclude Include="src\Settings.h" />
     <ClInclude Include="src\Singleton.h" />
     <ClInclude Include="src\SmartPointer.h" />
