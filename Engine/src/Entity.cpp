@@ -6,6 +6,7 @@
 #include "System.h"
 
 System::SystemManager &Entity::systemManager_ = System::getManager();
+Entity::Selection &Entity::selection_ = Entity::Selection();
 
 Entity::Entity(unsigned int id, const std::string &tag, const std::string &layer)
 	: id_(id)

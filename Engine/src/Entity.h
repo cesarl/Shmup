@@ -6,6 +6,7 @@
 #include "Barcode.h"
 #include "StringId.hpp"
 #include "SystemManager.h"
+#include "SmartPointer.h"
 
 namespace	Component
 {
@@ -17,6 +18,9 @@ class EntityManager;
 class Entity
 {		
 public:
+
+	typedef std::vector<SmartPointer<Entity> > Selection;
+
 	Entity(unsigned int id = 0, const std::string &tag = DEFAULT_TAG, const std::string &layer = DEFAULT_LAYER);
 	~Entity();
 	Entity(const Entity &other);
@@ -25,14 +29,32 @@ public:
 	unsigned int getId() const;
 	bool hasComponent(unsigned int id) const;
 	void reset();
+
 	const glm::mat4 &getLocalTransform() const;
 	glm::mat4 &getLocalTransform();
 	const glm::mat4 &getGlobalTransform() const;
 	glm::mat4 &getGlobalTransform();
 	void setLocalTranform(const glm::mat4 &trans);
+
 	void addSystem(System::Base *sys);
 	void removeSystem(System::Base *sys);
 	bool isPartOfSystem(System::Base *sys) const;
+
+	//void setFather(SmartPointer<Entity> &father);
+	//SmartPointer<Entity> &getFather();
+	//void setSon(SmartPointer<Entity> &son);
+	//SmartPointer<Entity> &getSon(unsigned int id);
+
+	//Selection &getSons();
+	//Selection &getSons(const Utils::Tag &tag);
+	//Selection &getSons(const Utils::Barcode &code);
+	//unsigned int sonsSize() const;
+
+	//Selection &getBrothers();
+	//Selection &getBrothers(const Utils::Tag &tag);
+	//Selection &getBrothers(const Utils::Barcode &code);
+	//unsigned int brothersSize() const;
+
 
 	template <typename T>
 	bool hasComponent() const
@@ -89,8 +111,10 @@ private:
 	std::vector<Component::Base*> components_;
 	std::list<System::Base*> systems_;
 	static System::SystemManager &systemManager_;
+	static Selection &selection_;
 
 	void informSystemsAboutRemovedCpt_();
+
 };
 
 #endif		//__ENTITY_H__

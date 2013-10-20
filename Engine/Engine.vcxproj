@@ -89,6 +89,8 @@
     <ClInclude Include="src\Ressource.h" />
     <ClInclude Include="src\Settings.h" />
     <ClInclude Include="src\Singleton.h" />
+    <ClInclude Include="src\SmartPointer.h" />
+    <ClInclude Include="src\SmartPointer.hpp" />
     <ClInclude Include="src\StringId.hpp" />
     <ClInclude Include="src\System.h" />
     <ClInclude Include="src\SystemManager.h" />
